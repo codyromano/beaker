@@ -11,7 +11,8 @@ class Beaker extends Component {
     const {
       width,
       height,
-      percentFilled
+      percentFilled,
+      bubbleOptions
     } = this.props;
 
     const inlineStyle = {
@@ -24,6 +25,7 @@ class Beaker extends Component {
         <BeakerGraphic/>
         <BeakerLiquid percentFilled={percentFilled}/>
         <BeakerBubbleFactory
+          bubbleOptions={bubbleOptions}
           percentHeight={percentFilled}
           spawnFrequency={500}
         />
@@ -34,11 +36,16 @@ class Beaker extends Component {
 
 Beaker.defaultProps = {
   width: 150,
-  height: 150
+  height: 150,
+  bubbleOptions: {
+    radius: 100
+  }
 };
 
 Beaker.propTypes = {
   percentFilled: PropTypes.number.isRequired,
+  // TODO: Define shape
+  bubbleOptions: PropTypes.object,
   width: PropTypes.number,
   height: PropTypes.number
 };

@@ -2,6 +2,11 @@ import React, {Component, PropTypes} from 'react'; // eslint-disable-line
 import Bubble from './BeakerBubble.jsx';
 import styles from '../styles/BeakerBubbleFactory.css';
 
+const getBubbleId = (function() {
+  let id = 1;
+  return () => id++;
+})();
+
 class BeakerBubbleFactory extends Component {
   constructor() {
     super();
@@ -16,18 +21,19 @@ class BeakerBubbleFactory extends Component {
   }
   onBubblePop() {
     this.setState({
-      bubbles: this.state.bubble.slice(1)
+      bubbles: this.state.bubbles.slice(1)
     });
   }
   spawnBubble() {
-    const bubble = (
-      <Bubble
-        onPop={this.onBubblePop}
-        duration={5000}
-        initialXPos={this.getRandSpawnPosition()}
-        radius={5}
-      />
-    );
+    const options = Object.assign({
+      key: getBubbleId(),
+      onPop: this.onBubblePop,
+      duration: 5000,
+      initialXPos: this.getRandSpawnPosition(),
+      radius: 5
+    }, this.props.bubbleOptions);
+
+    const bubble = (<Bubble {...options}/>);
     this.setState({
       bubbles: this.state.bubbles.concat(bubble)
     });
@@ -54,7 +60,8 @@ BeakerBubbleFactory.defaultProps = {
 
 BeakerBubbleFactory.propTypes = {
   spawnFrequency: PropTypes.number,
-  percentHeight: PropTypes.number.isRequired
+  percentHeight: PropTypes.number.isRequired,
+  bubbleOptions: PropTypes.object.isRequired
 };
 
 export default BeakerBubbleFactory;
