@@ -1,8 +1,36 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React, {Component} from 'react'; // eslint-disable-line no-unused-vars
+import PropTypes from 'prop-types';
 // TODO: Use absolute path
 import styles from '../styles/BeakerBubble.css';
 
-const BeakerBubble = () => (
-  <div className={styles.bubble}>Bubble</div>
-);
+class BeakerBubble extends Component {
+  componentDidMount() {
+    const {onPop, duration} = this.props;
+    window.setTimeout(() => onPop(this), duration);
+  }
+
+  render() {
+    const {initialXPos} = this.props;
+    const duration= Math.round(this.props.duration / 1000);
+
+    const inlineStyle = {
+      'left': `${initialXPos}px`,
+      'animationDuration': `${duration}s`
+    };
+
+    return (
+      <div
+        style={inlineStyle}
+        className={styles.bubble}
+      ></div>
+    );
+  }
+}
+
+BeakerBubble.propTypes = {
+  initialXPos: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
+  onPop: PropTypes.func.isRequired
+};
+
 export default BeakerBubble;

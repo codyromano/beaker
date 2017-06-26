@@ -1,5 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import Bubble from './components/BeakerBubble.jsx';
+import Beaker from './components/Beaker.jsx';
 import {render} from 'react-dom';
 
-render(<Bubble/>, document.getElementById('react-root'));
+render((
+  <Beaker width={250} height={250} percentFilled={50}/>
+), document.getElementById('react-root'));

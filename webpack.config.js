@@ -25,8 +25,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: 'Your_mom_loves_my_[name]' +
-                '__[local]--[hash:base64:5]'
+              localIdentName: 'Beaker_[local]_[hash:base64:5]'
             }
           }
         ]
@@ -38,6 +37,10 @@ module.exports = {
         query: {
           presets: ['react', 'es2017']
         }
+      },
+      {
+        test: /\.(jpg|png|svg)$/,
+        loader: 'url-loader'
       }
     ]
   },

@@ -26,12 +26,16 @@
     "css-loader": "^0.28.4",
     "eslint": "^4.1.0",
     "eslint-loader": "^1.8.0",
+    "eslint-plugin-flowtype": "^2.34.0",
     "eslint-plugin-react": "^7.1.0",
+    "file-loader": "^0.11.2",
     "flow-babel-webpack-plugin": "^1.0.1",
     "flowtype-loader": "^0.2.2",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
     "webpack": "3.0.0"
   }
 }
