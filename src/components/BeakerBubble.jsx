@@ -10,10 +10,12 @@ class BeakerBubble extends Component {
   }
 
   render() {
-    const {initialXPos} = this.props;
+    const {initialXPos, radius} = this.props;
     const duration= Math.round(this.props.duration / 1000);
 
     const inlineStyle = {
+      'width': `${radius}px`,
+      'height': `${radius}px`,
       'left': `${initialXPos}px`,
       'animationDuration': `${duration}s`
     };
@@ -30,7 +32,8 @@ class BeakerBubble extends Component {
 BeakerBubble.propTypes = {
   initialXPos: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
-  onPop: PropTypes.func.isRequired
+  onPop: PropTypes.func.isRequired,
+  radius: PropTypes.number.isRequired
 };
 
 export default BeakerBubble;

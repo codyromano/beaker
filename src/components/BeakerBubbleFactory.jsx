@@ -14,10 +14,26 @@ class BeakerBubbleFactory extends Component {
       bubbles: []
     };
     this.onBubblePop = this.onBubblePop.bind(this);
+    this.spawnBubble = this.spawnBubble.bind(this);
+  }
+  stopSpawn() {
+    window.clearInterval(this.spawnInterval);
+  }
+  startSpawn() {
+    this.spawnInterval = window.setInterval(this.spawnBubble,
+      this.props.spawnFrequency);
   }
   componentDidMount() {
-    window.setInterval(() => this.spawnBubble(),
+    this.startSpawn();
+  }
+  componentWillReceiveProps(newProps) {
+    const spawnFrequencyChanged = (newProps.spawnFrequency !==
       this.props.spawnFrequency);
+
+    if (spawnFrequencyChanged) {
+      this.stopSpawn();
+      this.startSpawn();
+    }
   }
   onBubblePop() {
     this.setState({
@@ -30,7 +46,7 @@ class BeakerBubbleFactory extends Component {
       onPop: this.onBubblePop,
       duration: 5000,
       initialXPos: this.getRandSpawnPosition(),
-      radius: 5
+      radius: this.props.radius
     }, this.props.bubbleOptions);
 
     const bubble = (<Bubble {...options}/>);
@@ -55,11 +71,13 @@ class BeakerBubbleFactory extends Component {
 }
 
 BeakerBubbleFactory.defaultProps = {
-  spawnFrequency: 250
+  spawnFrequency: 250,
+  radius: 5
 };
 
 BeakerBubbleFactory.propTypes = {
   spawnFrequency: PropTypes.number,
+  radius: PropTypes.number,
   percentHeight: PropTypes.number.isRequired,
   bubbleOptions: PropTypes.object.isRequired
 };

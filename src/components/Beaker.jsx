@@ -12,7 +12,8 @@ class Beaker extends Component {
       width,
       height,
       percentFilled,
-      bubbleOptions
+      bubbleOptions,
+      spawnFrequency
     } = this.props;
 
     const inlineStyle = {
@@ -27,7 +28,7 @@ class Beaker extends Component {
         <BeakerBubbleFactory
           bubbleOptions={bubbleOptions}
           percentHeight={percentFilled}
-          spawnFrequency={500}
+          spawnFrequency={spawnFrequency}
         />
       </div>
     );
@@ -37,6 +38,7 @@ class Beaker extends Component {
 Beaker.defaultProps = {
   width: 150,
   height: 150,
+  spawnFrequency: 500,
   bubbleOptions: {
     radius: 100
   }
@@ -44,6 +46,7 @@ Beaker.defaultProps = {
 
 Beaker.propTypes = {
   percentFilled: PropTypes.number.isRequired,
+  spawnFrequency: PropTypes.number,
   // TODO: Define shape
   bubbleOptions: PropTypes.object,
   width: PropTypes.number,
