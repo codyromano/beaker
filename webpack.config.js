@@ -18,6 +18,20 @@ module.exports = {
       },
     */
       {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: 'Your_mom_loves_my_[name]' +
+                '__[local]--[hash:base64:5]'
+            }
+          }
+        ]
+      },
+      {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
