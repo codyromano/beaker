@@ -11,8 +11,6 @@ Beaker relies on these tools:
 - Webpack
 - React & JSX
 
-Ensure that node, npm and webpack exist in your $PATH.
-
 ## Usage & Customization
 
 Simply `import` the `Beaker` component. You can customize it in the following ways:
@@ -28,7 +26,7 @@ Simply `import` the `Beaker` component. You can customize it in the following wa
 
 ## Try the Demo
 
-Run the demo featured in the .gif above:
+You can run the following commands to see what's featured in the .gif above. First, ensure that `node`, `npm` and `webpack` are globally installed on your machine:
 ```
 git clone https://github.com/codyromano/beaker.git
 cd beaker
